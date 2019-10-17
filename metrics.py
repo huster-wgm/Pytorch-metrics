@@ -571,7 +571,7 @@ if __name__ == "__main__":
                 y_true = y_true.cuda()
 
             print('#'*20, 'Cuda : {} ; size : {}'.format(cuda, y_true.size()))
-
+            ########### similarity metrics
             metric = MSE()
             acc = metric(y_pred, y_true).item()
             print("{} ==> {}".format(repr(metric), acc))
@@ -591,3 +591,28 @@ if __name__ == "__main__":
             metric = AE()
             acc = metric(y_pred, y_true).item()
             print("{} ==> {}".format(repr(metric), acc))
+            
+            ########### accuracy metrics
+            metric = OAAcc()
+            maccu, accu = metric(y_pred, y_true)
+            print('mAccu:', maccu, 'Accu', accu)
+
+            metric = Precision()
+            mprec, prec = metric(y_pred, y_true)
+            print('mPrec:', mprec, 'Prec', prec)
+
+            metric = Recall()
+            mreca, reca = metric(y_pred, y_true)
+            print('mReca:', mreca, 'Reca', reca)
+
+            metric = F1Score()
+            mf1sc, f1sc = metric(y_pred, y_true)
+            print('mF1sc:', mf1sc, 'F1sc', f1sc)
+
+            metric = Kappa()
+            mkapp, kapp = metric(y_pred, y_true)
+            print('mKapp:', mkapp, 'Kapp', kapp)
+
+            metric = Jaccard()
+            mjacc, jacc = metric(y_pred, y_true)
+            print('mJacc:', mjacc, 'Jacc', jacc)
