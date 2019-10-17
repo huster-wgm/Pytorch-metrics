@@ -5,6 +5,12 @@ The metrics.py is designed for evaluation tasks using two pytorch tensors as inp
 All implemented metric is compatible with any batch_size and devices(CPU or GPU).
 
 ```
+y_pred << 4D tensor in [batch_size, channels, img_rows, img_cols]
+y_true << 4D tensor in [batch_size, channels, img_rows, img_cols]
+
+metric = MSE()
+acc = metric(y_pred, y_true).item()
+print("{} ==> {}".format(repr(metric), acc))
 ```
 
 ## Requirement
