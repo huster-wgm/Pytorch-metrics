@@ -12,7 +12,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import lpips
 
-eps = 1e-18
+eps = 1e-6
 
 def _binarize(y_data, threshold):
     """
@@ -555,7 +555,7 @@ class AE(object):
         dotP = torch.sum(y_pred * y_true, dim=1)
         Norm_pred = torch.sqrt(torch.sum(y_pred * y_pred, dim=1))
         Norm_true = torch.sqrt(torch.sum(y_true * y_true, dim=1))
-        ae = 180 / math.pi * torch.acos(dotP / (Norm_pred * Norm_true))
+        ae = 180 / math.pi * torch.acos(dotP / (Norm_pred * Norm_true + eps))
         return ae.mean(1).mean(1)
 
 
