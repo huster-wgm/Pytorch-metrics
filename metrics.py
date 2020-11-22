@@ -10,7 +10,8 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import lpips
+from community import lpips
+from community import fid
 
 eps = 1e-6
 
